@@ -197,6 +197,28 @@ strong {
   animation: pulseGlowGold 2s infinite;
 }
 
+.red {
+  text-align: center;
+  color: #d32e2e; /* Blue text */
+  text-shadow: 0 0 10px rgb(240, 109, 9), 0 0 20px rgb(243, 26, 26), 0 0 40px #0ff;
+  animation: pulseGlowRed .5s infinite;
+}
+
+a{
+  color: red;
+  text-decoration: none;
+}
+
+@keyframes pulseGlowRed {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgb(199, 23, 23), 0 0 20px rgba(182, 22, 54, 0.715), 0 0 40px rgb(219, 83, 11);
+  }
+  50% {
+    text-shadow: 0 0 20px rgb(235, 19, 19), 0 0 40px rgb(192, 35, 18), 0 0 80px rgb(186, 66, 15);
+  }
+}
+
 @keyframes pulseGlowGold {
   0%,
   100% {
@@ -236,3 +258,10 @@ strong {
     text-shadow: 0 0 20px rgb(23, 141, 139), 0 0 40px rgb(9, 100, 100), 0 0 80px #0ff;
   }
 }
+
+  .responsive-img {
+    text-align: center;
+    margin-top: .5rem;
+    max-width: 100%;
+    height: auto;
+  }

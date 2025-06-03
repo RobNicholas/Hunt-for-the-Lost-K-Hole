@@ -1,27 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const aliens = ["👽", "👾", "🛸", "🐄", "🦑", "💦", "🍆", "🍑", "🌶", "️🚬", "❄", "️🎃", "💊", "💨", "🤠", "🤖"];
-  const listItems = document.querySelectorAll("ul li");
-  const emojiTrail = new Array(listItems.length).fill("");
+const aliens = ["👽", "👾", "🛸", "🐄", "🦑", "💦", "🍆", "🍑", "🌶", "️🚬", "❄", "️🎃", "💊", "💨", "🤠", "🤖"];
+const listItems = document.querySelectorAll("ul li");
 
-  emojiTrail[0] = aliens[Math.floor(Math.random() * aliens.length)];
-
-  function updateEmojis() {
-    const newEmoji = aliens[Math.floor(Math.random() * aliens.length)];
-    for (let i = emojiTrail.length - 1; i > 0; i--) {
-      emojiTrail[i] = emojiTrail[i - 1];
-    }
-    emojiTrail[0] = newEmoji;
-
-    listItems.forEach((li, index) => {
-      const currentEmoji = `"${emojiTrail[index]}"`;
-      // Only update if changed
-      if (li.style.getPropertyValue('--before-content') !== currentEmoji) {
-        li.style.setProperty('--before-content', currentEmoji);
-      }
-    });
-  }
-
-  updateEmojis();
+listItems.forEach((li) => {
+  const randomEmoji = aliens[Math.floor(Math.random() * aliens.length)];
+  li.style.setProperty('--before-content', `"${randomEmoji}"`);
+});
 
   // --- Shooting Stars ---
   const starsContainer = document.querySelector('.shooting-stars');
@@ -51,41 +35,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Alien Image Movement ---
 const alien = document.getElementById('alien');
-const shouldShowAlien = Math.random() < 0.5;
+const shouldShowAlien = Math.random() < 0.3;
 
 if (shouldShowAlien && alien) {
-
-  const rand = Math.random(); // a number between 0 and 1
+  const rand = Math.random();
   let selectedImage = "";
 
   if (rand < 0.8) {
-    selectedImage = "alien.png"; // 80% chance
+    selectedImage = "alien.png";
   } else if (rand < 0.9) {
-    selectedImage = "beer.png"; // 10% chance
+    selectedImage = "beer.png";
   } else {
-    selectedImage = "cig.png"; // 10% chance
+    selectedImage = "cig.png";
   }
 
   alien.setAttribute('src', selectedImage);
 
   setTimeout(() => {
     alien.style.display = 'block';
-    alien.style.position = 'absolute'; // Ensure it's positioned absolutely from the start
+    alien.style.position = 'fixed'; // Use fixed to keep it in viewport
+    alien.style.willChange = 'transform, top, left'; // Hint for performance
+    alien.style.width = '100px'; // Optional: set known width/height
+    alien.style.height = 'auto';
+
     moveAlien();
   }, 5000);
 
   function moveAlien() {
     const screenWidth = window.innerWidth;
-    const pageHeight = Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight
-    );
+    const screenHeight = window.innerHeight;
 
-    const newX = Math.random() * (screenWidth - alien.width);
-    const newY = Math.random() * (pageHeight - alien.height);
-    const scale = 0.5 + Math.random() * 1.5; // scale from 0.5x (far) to 2x (close)
+    const alienWidth = alien.offsetWidth;
+    const alienHeight = alien.offsetHeight;
 
-    alien.style.transition = 'all 2s ease';
+    const newX = Math.random() * (screenWidth - alienWidth);
+    const newY = Math.random() * (screenHeight - alienHeight);
+    const scale = 0.5 + Math.random() * 1.5;
+
+    alien.style.transition = 'transform 2s ease, left 2s ease, top 2s ease';
     alien.style.left = `${newX}px`;
     alien.style.top = `${newY}px`;
     alien.style.transform = `scale(${scale})`;

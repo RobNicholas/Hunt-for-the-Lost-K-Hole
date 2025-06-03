@@ -35,7 +35,7 @@ listItems.forEach((li) => {
 
   // --- Alien Image Movement ---
 const alien = document.getElementById('alien');
-const shouldShowAlien = Math.random() < 0.3;
+const shouldShowAlien = Math.random() < 0.1;
 
 if (shouldShowAlien && alien) {
   const rand = Math.random();
@@ -51,15 +51,22 @@ if (shouldShowAlien && alien) {
 
   alien.setAttribute('src', selectedImage);
 
+  // Show the alien for 10-15 seconds
   setTimeout(() => {
     alien.style.display = 'block';
-    alien.style.position = 'fixed'; // Use fixed to keep it in viewport
-    alien.style.willChange = 'transform, top, left'; // Hint for performance
-    alien.style.width = '100px'; // Optional: set known width/height
+    alien.style.position = 'fixed'; 
+    alien.style.willChange = 'transform, top, left'; 
+    alien.style.width = '100px'; 
     alien.style.height = 'auto';
 
     moveAlien();
-  }, 5000);
+
+    // Hide the alien after 10-15 seconds
+    setTimeout(() => {
+      alien.style.display = 'none';
+    }, Math.random() * 5000 + 10000); 
+
+  }, 5000); // Initial delay before appearing
 
   function moveAlien() {
     const screenWidth = window.innerWidth;
@@ -79,6 +86,12 @@ if (shouldShowAlien && alien) {
 
     setTimeout(moveAlien, 2000);
   }
+
+  // After 30 seconds, repeat the process
+  setTimeout(() => {
+    alien.style.display = 'none';
+  }, 30000); 
 }
+
 
 });

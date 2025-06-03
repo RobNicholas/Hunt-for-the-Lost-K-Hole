@@ -1,11 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
 const aliens = ["👽", "👾", "🛸", "🐄", "🦑", "💦", "🍆", "🍑", "🌶", "️🚬", "❄", "️🎃", "💊", "💨", "🤠", "🤖"];
-const listItems = document.querySelectorAll("ul li");
+  const listItems = document.querySelectorAll("ul li");
+  const emojiTrail = new Array(listItems.length).fill("");
 
-listItems.forEach((li) => {
-  const randomEmoji = aliens[Math.floor(Math.random() * aliens.length)];
-  li.style.setProperty('--before-content', `"${randomEmoji}"`);
-});
+  // Start with a random emoji on the first <li>
+  emojiTrail[0] = aliens[Math.floor(Math.random() * aliens.length)];
+
+  function updateEmojis() {
+    // Shift all emojis downward
+    for (let i = listItems.length - 1; i > 0; i--) {
+      emojiTrail[i] = emojiTrail[i - 1];
+    }
+
+    // Insert a new random emoji at the top
+    emojiTrail[0] = aliens[Math.floor(Math.random() * aliens.length)];
+
+    // Apply the emoji to each list item's CSS
+    listItems.forEach((li, index) => {
+      li.style.setProperty('--before-content', `"${emojiTrail[index]}"`);
+    });
+  }
+
+  updateEmojis(); // initial call
+  setInterval(updateEmojis, 600); // update every 500ms
 
   // --- Shooting Stars ---
   const starsContainer = document.querySelector('.shooting-stars');

@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap");
+
+body {
+  font-family: "Orbitron", sans-serif;
+  background: #0a0a1a
+    url("https://www.transparenttextures.com/patterns/stardust.png");
+  background-size: cover;
+  color: #e0ffe9;
+  margin: 20px;
+  padding: 0 10px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+li {
+  background-color: rgba(10, 20, 30, 0.85);
+  color: #e0ffe9;
+  padding: 1rem 1rem 1rem 3rem;
+  border-left: 4px solid #00ffaa;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  box-shadow: 0 0 6px rgba(0, 255, 170, 0.2);
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+ul li::before {
+  content: var(--before-content, "👽");
+}
+
+li::before {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+}
+
+li:hover {
+  background-color: rgba(20, 40, 60, 0.95);
+}
+
+li:nth-child(odd) {
+  background-color: rgba(15, 30, 45, 0.9);
+}
+
+li:nth-child(even) {
+  background-color: rgba(10, 25, 40, 0.9);
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  strong {
+    font-size: 1rem;
+  }
+
+  li {
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+    font-size: 0.95rem;
+  }
+
+  li::before {
+    left: 0.75rem;
+    font-size: 1.25rem;
+  }
+}
+
+ol {
+  counter-reset: item;
+  list-style: none;
+  padding-left: 0;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+
+ol li {
+  counter-increment: item;
+  background-color: rgba(10, 20, 30, 0.85);
+  color: #e0ffe9;
+  padding: 1rem 1rem 1rem 4rem;
+  border-left: 4px solid #00ffaa;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  box-shadow: 0 0 8px rgba(0, 255, 170, 0.4);
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+ol li::before {
+  content: counter(item);
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #00ffaa;
+  color: #0a0a1a;
+  font-weight: 700;
+  font-size: 1.2rem;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 0 0 10px #00ffaa;
+}
+
+ol li:hover {
+  background-color: rgba(20, 40, 60, 0.95);
+}
+
+@media (max-width: 600px) {
+  ol li {
+    padding: 0.75rem 0.75rem 0.75rem 3.5rem;
+    font-size: 0.95rem;
+  }
+
+  ol li::before {
+    width: 1.6rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    font-size: 1rem;
+    left: 0.75rem;
+  }
+}
+
+.shooting-stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* So clicks pass through */
+  overflow: visible;
+  z-index: 0; /* behind content */
+}
+
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(-45deg, white, rgba(255, 255, 255, 0));
+  border-radius: 50%;
+  opacity: 0.8;
+  transform: translateX(0) translateY(0) rotate(-45deg);
+  animation-timing-function: ease-out;
+  animation-name: shooting;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shooting {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-45deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100vw) translateY(100vh) rotate(-45deg);
+  }
+}
+h1 {
+  text-align: center;
+  color: #6b6be8; /* Blue text */
+  text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 40px #0ff;
+  animation: pulseGlowBlue 2s infinite;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #00ffcc;
+  text-shadow: 0 0 8px #00ffcc;
+  margin-bottom: 1rem;
+  text-align: center;
+  animation: pulseGlowGreen 2s infinite;
+}
+
+strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #afffaf;
+  text-shadow: 0 0 6px #00ffcc;
+  text-align: center;
+  text-shadow: 0 0 10px rgb(36, 149, 134), 0 0 20px rgb(45, 151, 151), 0 0 40px #0ff;
+  animation: pulseGlowGold 2s infinite;
+}
+
+@keyframes pulseGlowGold {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgb(173, 199, 23), 0 0 20px rgba(236, 233, 69, 0.715), 0 0 40px #0ff;
+  }
+  50% {
+    text-shadow: 0 0 20px rgb(149, 181, 62), 0 0 40px rgb(147, 197, 31), 0 0 80px #0ff;
+  }
+}
+
+@keyframes pulseGlowBlue {
+  0%,
+  100% {
+    text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 40px #0ff;
+  }
+  50% {
+    text-shadow: 0 0 20px #00f, 0 0 40px #00f, 0 0 80px #0ff;
+  }
+}
+
+@keyframes pulseGlowBlue {
+  0%,
+  100% {
+    text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 40px #0ff;
+  }
+  50% {
+    text-shadow: 0 0 20px #00f, 0 0 40px #00f, 0 0 80px #0ff;
+  }
+}
+
+@keyframes pulseGlowGreen {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgb(29, 134, 135), 0 0 20px rgb(22, 108, 101), 0 0 40px #0ff;
+  }
+  50% {
+    text-shadow: 0 0 20px rgb(23, 141, 139), 0 0 40px rgb(9, 100, 100), 0 0 80px #0ff;
+  }
+}

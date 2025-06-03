@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival Challenge - Alien Edition</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+
+	<h1>Hunt for the Lost K-Hole</h1>
+    <h2>Rules!</h2>
+
+	<ol>
+	  <li><p>To join, you must donate something to the winner's pile (sprouts, kandi, candy, trinkets, etc.)</p></li>
+	  <li><p>You must take a picture as proof that you completed the challenge.</p></li>
+	  <li><p>After each level, report back to receive the next level.</p></li>
+	</ol>
+
+	<h2>Info</h2>
+	<strong>Each day there will be a new level. You can also do the previous day's challenge.</strong>
+
+	<strong>The winner will be announced Saturday night.</strong>
+
+
+<br>
+	
+	
+	
+
+    <h2>Level 1</h2>
+    <strong>1 Point per item. Unlock 5 for next level</strong>
+    <ul>
+        <li>Give or get a light show</li>
+        <li>Slap the bag</li>
+        <li>Trade kandi</li>
+        <li>Smoke weed</li>
+        <li>Take a booty pic</li>
+        <li>Join a mosh pit</li>
+        <li>Trade sprout</li>
+        <li>Do drugs/alcohol with strangers</li>
+        <li>Convince someone to take a group selfie with you and their crew</li>
+        <li>Start a chant or cheer with strangers</li>
+        <li>Piss in a secluded corner and get a photo of the aftermath barefoot with your feet spread open</li>
+        <li>Find a pile of mud, dirt, or spilled drinks, and roll around in it</li>
+    </ul>
+
+
+    <h2>Disclaimer</h2>
+    <p>Disclaimer:
+	As a perfectly ordinary human being, I assure you that I am entirely not an alien, just a regular Earth dweller enjoying the wonders of your fascinating planet!
+The following list is intended purely as a joke and for entertainment purposes only. I do not condone, encourage, or take responsibility for any actions taken based on this content. Some items listed may be dangerous, illegal, or inappropriate—do not interpret them as actual advice or instructions. Always use good judgment, respect others, and follow all applicable laws and event rules.</p>
+
+</body>
+<div class="shooting-stars"></div>
+
+</html>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const aliens = ["👽", "👾", "🛸", "🐄", "🦑", "💦", "🍆", "🍑", "🌶", "️🚬", "❄", "️🎃", "💊", "💨", "🤠", "🤖"];
+  const listItems = document.querySelectorAll("ul li");
+  const emojiTrail = new Array(listItems.length).fill("");
+
+  // Start with a random emoji on the first <li>
+  emojiTrail[0] = aliens[Math.floor(Math.random() * aliens.length)];
+
+  function updateEmojis() {
+    // Shift all emojis downward
+    for (let i = listItems.length - 1; i > 0; i--) {
+      emojiTrail[i] = emojiTrail[i - 1];
+    }
+
+    // Insert a new random emoji at the top
+    emojiTrail[0] = aliens[Math.floor(Math.random() * aliens.length)];
+
+    // Apply the emoji to each list item's CSS
+    listItems.forEach((li, index) => {
+      li.style.setProperty('--before-content', `"${emojiTrail[index]}"`);
+    });
+  }
+
+  updateEmojis(); // initial call
+  setInterval(updateEmojis, 600); // update every 500ms
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Existing emoji update code...
+
+  // Create multiple shooting stars
+  const starsContainer = document.querySelector('.shooting-stars');
+
+  function createShootingStar(delay) {
+    const star = document.createElement('div');
+    star.classList.add('shooting-star');
+    star.style.top = Math.random() * 80 + 'vh'; // vertical start position
+    star.style.left = Math.random() * 100 + 'vw'; // horizontal start position
+    star.style.animationDuration = (Math.random() * 1 + 0.8) + 's'; // duration between 0.8 and 1.8 seconds
+    star.style.animationDelay = delay + 's'; // stagger the stars
+    starsContainer.appendChild(star);
+
+    // Remove star after animation to prevent buildup
+    star.addEventListener('animationend', () => {
+      star.remove();
+      // Recreate a new star
+      createShootingStar(Math.random() * 5);
+    });
+  }
+
+  // Create initial stars with staggered delays
+  for (let i = 0; i < 8; i++) {
+    createShootingStar(i * 0.6);
+  }
+});
+
+</script>

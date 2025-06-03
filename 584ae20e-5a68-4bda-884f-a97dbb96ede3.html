@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Festival Challenge - Alien Edition</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" type="text/javascript"></script>
   </head>
   <body>
     <h1>Hunt for the Lost K-Hole</h1>
@@ -26,12 +27,18 @@
       <li>Shit in the port a potty and "yell someone left a bomb in there"</li>
     </ul>
 
-    <br>
+    <br />
     <h2>Thought this was cool? Buy me a coffee!</h2>
-    <h3 class="red"><a href="https://venmo.com/code?user_id=3480961916339541533&created=1748954805">👉 Send a tip on Venmo</a></h3>
-    <a href="https://venmo.com/code?user_id=3480961916339541533&created=1748954805"><img src="venmo.png" alt="Venmo" class="responsive-img"></a>
-    <br>
-    <br>
+    <h3 class="red">
+      <a href="https://venmo.com/code?user_id=3480961916339541533"
+        >👉 Send a tip on Venmo</a
+      >
+    </h3>
+    <a href="https://venmo.com/code?user_id=3480961916339541533"
+      ><img src="venmo.png" alt="Venmo" class="responsive-img"
+    /></a>
+    <br />
+    <br />
 
     <h2>Rules!</h2>
 
@@ -71,67 +78,5 @@
     </p>
   </body>
   <div class="shooting-stars"></div>
+  <img id="alien" class="alien" />
 </html>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const aliens = [
-      "👽",
-      "👾",
-      "🛸",
-      "🐄",
-      "🦑",
-      "💦",
-      "🍆",
-      "🍑",
-      "🌶",
-      "️🚬",
-      "❄",
-      "️🎃",
-      "💊",
-      "💨",
-      "🤠",
-      "🤖",
-    ];
-    const listItems = document.querySelectorAll("ul li");
-
-    function updateEmojis() {
-      listItems.forEach((li) => {
-        const randomAlien = aliens[Math.floor(Math.random() * aliens.length)];
-        li.style.setProperty("--before-content", `"${randomAlien}"`);
-      });
-    }
-
-    updateEmojis(); // initial call
-    setInterval(updateEmojis, 500); // update every 500ms
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    // Existing emoji update code...
-
-    // Create multiple shooting stars
-    const starsContainer = document.querySelector(".shooting-stars");
-
-    function createShootingStar(delay) {
-      const star = document.createElement("div");
-      star.classList.add("shooting-star");
-      star.style.top = Math.random() * 80 + "vh"; // vertical start position
-      star.style.left = Math.random() * 100 + "vw"; // horizontal start position
-      star.style.animationDuration = Math.random() * 1 + 0.8 + "s"; // duration between 0.8 and 1.8 seconds
-      star.style.animationDelay = delay + "s"; // stagger the stars
-      starsContainer.appendChild(star);
-
-      // Remove star after animation to prevent buildup
-      star.addEventListener("animationend", () => {
-        star.remove();
-        // Recreate a new star
-        createShootingStar(Math.random() * 5);
-      });
-    }
-
-    // Create initial stars with staggered delays
-    for (let i = 0; i < 8; i++) {
-      createShootingStar(i * 0.6);
-    }
-  });
-</script>

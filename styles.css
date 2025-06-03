@@ -265,3 +265,13 @@ a{
     max-width: 100%;
     height: auto;
   }
+
+  
+  .alien {
+    text-align: center;
+    margin-top: .5rem;
+    max-width: 100%;
+    height: auto;
+    z-index: -1;
+  }
+
